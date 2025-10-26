@@ -1,0 +1,11 @@
+# Ficheiro de conexão com senhas
+conexao.php
+
+# Pasta 'vendor' usada por Composer
+vendor/
+
+# Ficheiros de sistema do Windows
+Thumbs.db
+
+# Ficheiros de sistema do macOS
+.DS_Store
