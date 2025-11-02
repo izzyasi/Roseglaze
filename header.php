@@ -22,14 +22,24 @@ if (isset($_SESSION['sacola'])) {
     </div>
     
     <nav class="nav-right">
-        <a href="#"><span class="material-icons-outlined">search</span></a>
-        <a href="#"><span class="material-icons-outlined">person_outline</span></a>
-        
-        <a href="#sacola">
-            <span class="material-icons-outlined">shopping_bag_outline</span>
-            <?php if ($itens_na_sacola > 0): ?>
-                <span class="sacola-contador">(<?php echo $itens_na_sacola; ?>)</span>
-            <?php endif; ?>
+    <a href="#"><span class="material-icons-outlined">search</span></a>
+
+    <?php if (isset($_SESSION['usuario_id'])): ?>
+        <a href="minha_conta.php">
+            <span class="material-icons-outlined">person_outline</span>
         </a>
-    </nav>
+    <?php else: ?>
+        <a href="login.php">
+            <span class="material-icons-outlined">person_outline</span>
+        </a>
+    <?php endif; ?>
+
+
+    <a href="#sacola"> 
+        <span class="material-icons-outlined">shopping_bag_outline</span>
+        <?php if ($itens_na_sacola > 0): ?>
+            <span class="sacola-contador">(<?php echo $itens_na_sacola; ?>)</span>
+        <?php endif; ?>
+    </a>
+</nav>
 </header>
