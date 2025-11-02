@@ -45,21 +45,7 @@ $produto = null;
 </head>
 <body>
 
-    <header class="main-header">
-        <nav class="nav-left">
-            <a href="index.php">Sunglasses</a> 
-            <a href="#">Coleções</a>
-            <a href="#">PFW25</a>
-        </nav>
-        <div class="logo-container">
-            <a href="index.php">Roseglaze</a>
-        </div>
-        <nav class="nav-right">
-            <a href="#"><span class="material-icons-outlined">search</span></a>
-            <a href="#"><span class="material-icons-outlined">person_outline</span></a>
-            <a href="#"><span class="material-icons-outlined">shopping_bag_outline</span></a>
-        </nav>
-    </header>
+    <?php require 'header.php'; ?>
 
     <main class="product-page-container">
         
@@ -74,7 +60,7 @@ $produto = null;
             
             <p class="product-price">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
             
-            <button type="button" class="btn-add-to-bag">Add to Bag</button>
+            <button type="button" class="btn-add-to-bag" data-id-produto="<?php echo htmlspecialchars($produto['id']); ?>">Add to Bag</button>
             
             <div class="product-info-accordion">
                 <details open> <summary>Details</summary>
@@ -107,6 +93,43 @@ $produto = null;
             </div>
         </div>
     </footer>
-
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+        
+        const addBtn = document.querySelector('.btn-add-to-bag');
+        
+        if (addBtn) {
+            addBtn.addEventListener('click', function() {
+                
+                const idProduto = this.dataset.idProduto;
+                
+                fetch('sacola_acoes.php', {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json' 
+                    },
+                    body: JSON.stringify({
+                        acao: 'adicionar',
+                        id: idProduto
+                    })
+                })
+                .then(response => response.json()) 
+                .then(data => {
+                    alert(data.mensagem); 
+                    if (data.sucesso) {
+                        this.textContent = 'Adicionado!';
+                        this.disabled = true; 
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro no fetch:', error);
+                    alert('Ocorreu um erro ao conectar. Tente novamente.');
+                });
+            });
+        }
+    });
+    </script>
+    <?php require 'sacola_lateral.php'; ?>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -369,3 +369,141 @@
     .info-content p {
     margin: 5px 0;
     }
+
+    .sacola-lateral-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+}
+
+.sacola-lateral-container.escondido {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.sacola-lateral-container:not(.escondido) {
+    visibility: visible;
+    opacity: 1;
+}
+
+.sacola-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.sacola-gaveta {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-out;
+}
+
+.sacola-lateral-container:not(.escondido) .sacola-gaveta {
+    transform: translateX(0%);
+}
+
+.sacola-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.sacola-titulo {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.btn-fechar-sacola {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.btn-fechar-sacola .material-icons-outlined {
+    font-size: 28px;
+}
+
+.sacola-itens-lista {
+    flex: 1;
+    overflow-y: auto;
+    padding: 25px;
+}
+
+.sacola-vazia-msg {
+    text-align: center;
+    color: #777;
+    margin-top: 40px;
+}
+
+.sacola-footer {
+    padding: 25px;
+    border-top: 1px solid #eee;
+}
+
+.sacola-subtotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sacola-footer .btn-add-to-bag {
+    width: 100%;
+}
+
+.sacola-item {
+    display: flex;
+    gap: 15px; 
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.sacola-item-img-placeholder {
+    width: 90px;
+    height: 90px;
+    background-color: #f0f0f0;
+    flex-shrink: 0; 
+}
+
+.sacola-item-detalhes {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.sacola-item-detalhes h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+}
+
+.sacola-item-detalhes p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+}

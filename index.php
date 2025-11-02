@@ -56,23 +56,7 @@ try {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
-
-    <header class="main-header">
-        <nav class="nav-left">
-            <a href="#">Sunglasses</a>
-            <a href="#">Coleções</a>
-            <a href="#">PFW25</a>
-        </nav>
-        <div class="logo-container">
-            <a href="index.php">Roseglaze</a>
-        </div>
-        <nav class="nav-right">
-            <a href="#"><span class="material-icons-outlined">search</span></a>
-            <a href="#"><span class="material-icons-outlined">person_outline</span></a>
-            <a href="#"><span class="material-icons-outlined">shopping_bag_outline</span></a>
-        </nav>
-    </header>
-
+    <?php require 'header.php'; ?>
     <section class="hero-section">
         <?php
         if (count($colecoes) > 0):
@@ -174,6 +158,7 @@ try {
             </div>
         </div>
     </footer>
-
+                <?php require 'sacola_lateral.php'; ?>
+                <script src="js/main.js"></script>
 </body>
 </html>
