@@ -26,25 +26,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$email]);
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
         if ($usuario && password_verify($senha, $usuario['senha'])) {
-            $_SESSION['usuario_id'] = $usuario['id'];
-            $_SESSION['usuario_nome'] = $usuario['nome'];
-            
-            header('Location: minha_conta.php');
-            exit;
+
+            if ($usuario['email_verificado'] == 1) {
+                $_SESSION['usuario_id'] = $usuario['id'];
+                $_SESSION['usuario_nome'] = $usuario['nome']; 
+                
+                header('Location: minha_conta.php');
+                exit;
+                
+            } else {
+                $erros[] = "A sua conta foi criada, mas ainda não foi ativada. Por favor, verifique o seu e-mail.";
+            }
             
         } else {
             $erros[] = "E-mail ou senha inválidos.";
         }
     }
-    
+  
     if (!empty($erros)) {
         $_SESSION['erros_login'] = $erros;
         header('Location: login.php');
         exit;
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

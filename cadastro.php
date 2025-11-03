@@ -7,7 +7,7 @@ require 'conexao.php';
 
 $erros = [];
 $mensagem_sucesso = '';
-$old_input = [];
+$old_input = []; 
 
 if (isset($_SESSION['sucesso_cadastro'])) {
     $mensagem_sucesso = $_SESSION['sucesso_cadastro'];
@@ -17,7 +17,6 @@ if (isset($_SESSION['sucesso_cadastro'])) {
 if (isset($_SESSION['erros_cadastro'])) {
     $erros = $_SESSION['erros_cadastro'];
     unset($_SESSION['erros_cadastro']); 
-
     if (isset($_SESSION['old_input_cadastro'])) {
         $old_input = $_SESSION['old_input_cadastro'];
         unset($_SESSION['old_input_cadastro']);
@@ -39,11 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $old_input = $_POST;
     unset($old_input['senha']);
 
-    
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $erros[] = "O formato do e-mail é inválido.";
     }
-    
     if (strlen($senha) < 8) {
         $erros[] = "A senha deve ter no mínimo 8 caracteres.";
     }
@@ -53,30 +50,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!preg_match('/\d/', $senha)) {
         $erros[] = "A senha deve conter pelo menos um número.";
     }
-  
+
     if (empty($erros)) {
         $sql_check = "SELECT id FROM usuarios WHERE email = ?";
         $stmt_check = $pdo->prepare($sql_check);
         $stmt_check->execute([$email]);
-        
         if ($stmt_check->fetch()) {
             $erros[] = "Este e-mail já está registado. Tente fazer login.";
         }
     }
 
     if (empty($erros)) {
+
         $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
-        
-        $sql_insert = "INSERT INTO usuarios (email, senha, titulo, nome, sobrenome, telefone, local_residencia, data_nascimento, aceita_comunicacoes, data_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+
+        $token_verificacao = bin2hex(random_bytes(32));
+
+        $sql_insert = "INSERT INTO usuarios 
+                        (email, senha, titulo, nome, sobrenome, telefone, 
+                         local_residencia, data_nascimento, aceita_comunicacoes, 
+                         token_verificacao, data_registro) 
+                       VALUES 
+                        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
         
         try {
             $stmt_insert = $pdo->prepare($sql_insert);
             $stmt_insert->execute([
                 $email, $senha_hash, $titulo, $nome, $sobrenome, 
-                $telefone, $local_residencia, $data_nascimento, $aceita_comunicacoes
+                $telefone, $local_residencia, $data_nascimento, $aceita_comunicacoes,
+                $token_verificacao 
             ]);
+
+            $_SESSION['sucesso_cadastro'] = "Conta criada com sucesso! Por favor, verifique o seu e-mail para ativar a sua conta.";
             
-            $_SESSION['sucesso_cadastro'] = "Conta criada com sucesso! Você já pode fazer o login.";
             header('Location: cadastro.php');
             exit;
             
@@ -89,11 +95,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
     } else {
         $_SESSION['erros_cadastro'] = $erros;
-        $_SESSION['old_input_cadastro'] = $old_input; 
+        $_SESSION['old_input_cadastro'] = $old_input;
         header('Location: cadastro.php');
         exit;
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
