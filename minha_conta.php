@@ -59,7 +59,7 @@ try {
                     <div>
                         <strong>Pedidos</strong>
                         <p>Ainda não foram realizadas encomendas.</p>
-                        <a href="#">Ver todos os pedidos</a>
+                        <a href="meus_pedidos.php">Ver todos os pedidos</a>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,6 @@ try {
         </div>
 
     </main>
-
 
     <?php require 'footer.php'; ?>
 
