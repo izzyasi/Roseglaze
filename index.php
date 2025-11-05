@@ -1,7 +1,7 @@
 <?php
 require 'conexao.php';
 
-$sql_colecoes = "SELECT * FROM colecoes WHERE ativa = 1 ORDER BY data_registo DESC";
+$sql_colecoes = "SELECT * FROM colecoes WHERE ativa = 1 ORDER BY data_registro DESC";
 try {
     $stmt_colecoes = $pdo->prepare($sql_colecoes);
     $stmt_colecoes->execute();
@@ -12,7 +12,7 @@ try {
 
 $sql_oculos = "SELECT id, modelo, cor, preco 
                FROM oculos 
-               ORDER BY data_registo DESC
+               ORDER BY data_registro DESC
                LIMIT 4";
 try {
     $stmt_oculos = $pdo->prepare($sql_oculos);
@@ -25,7 +25,7 @@ try {
 $sql_destaques = "SELECT id, modelo, cor, preco 
                   FROM oculos 
                   WHERE em_destaque = 1 
-                  ORDER BY data_registo DESC
+                  ORDER BY data_registro DESC
                   LIMIT 4";
 try {
     $stmt_destaques = $pdo->prepare($sql_destaques);
@@ -37,7 +37,7 @@ try {
 
 $sql_espacos = "SELECT id, nome_local, endereco_curto, imagem_local 
                 FROM espacos 
-                ORDER BY data_registo DESC";
+                ORDER BY data_registro DESC";
 try {
     $stmt_espacos = $pdo->prepare($sql_espacos);
     $stmt_espacos->execute();

@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_check = $pdo->prepare($sql_check);
         $stmt_check->execute([$email]);
         if ($stmt_check->fetch()) {
-            $erros[] = "Este e-mail já está registado. Tente fazer login.";
+            $erros[] = "Este e-mail já está registrado. Tente fazer login.";
         }
     }
 
