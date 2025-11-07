@@ -36,7 +36,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roseglaze - Minha Conta</title>
     
-    <link rel="stylesheet" href="css/esti lo.css">
+    <link rel="stylesheet" href="css/estilo.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
@@ -48,7 +48,7 @@ try {
         <h2><?php echo htmlspecialchars(strtoupper($usuario['nome'])); ?></h2>
     </div>
 
-    <main class="container-produtos">
+    <main class="container-conta">
         
         <div class="conta-dashboard-grid">
             
@@ -91,7 +91,7 @@ try {
         </div> <hr style="border: 0; border-top: 1px solid #ddd; margin: 60px 0;">
 
         <div class="conta-detalhes-grid">
-            <h4 class="secao-titulo" style="border: none; text-align: center;">DETALHES DA CONTA</h4>
+            <h4 class="secao-titulo">DETALHES DA CONTA</h4>
             
             <nav class="conta-detalhes-links">
                 <a href="#">Início de sessão e Segurança</a>

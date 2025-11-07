@@ -45,6 +45,7 @@ try {
 } catch (\PDOException $e) {
     die("Erro ao buscar espaços: " . $e->getMessage());
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -67,7 +68,6 @@ try {
                 <div class="hero-text-overlay">
                     <div class="hero-text">
                         <h1><?php echo htmlspecialchars($destaque['nome']); ?></h1>
-                        <p><?php echo htmlspecialchars($destaque['descricao']); ?></p>
                         <div class="hero-buttons">
                             <a href="colecao.php?id=<?php echo htmlspecialchars($destaque['id']); ?>" class="btn btn-primary">Compre Agora</a>
                             <a href="#" class="btn btn-secondary">Veja a Campanha</a>

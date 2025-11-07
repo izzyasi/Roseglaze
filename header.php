@@ -1,20 +1,19 @@
 <?php
-/*
- * Documentação: Cabeçalho Reutilizável (header.php)
- */
 
 $itens_na_sacola = 0;
 if (isset($_SESSION['sacola'])) {
     $itens_na_sacola = count($_SESSION['sacola']);
 }
+
 ?>
 
 <header class="main-header">
         
     <nav class="nav-left">
-        <a href="index.php">Sunglasses</a>
+        <a href="#">Óculos de Sol</a>
+        <a href="#">Óculos</a>
         <a href="#">Coleções</a>
-        <a href="#">PFW25</a>
+        <a href="#">Lojas</a>
     </nav>
     
     <div class="logo-container">

@@ -1,7 +1,4 @@
 <?php
-/*
- * Documentação: Página de Cadastro (cadastro.php)
- */
 
 require 'conexao.php';
 
@@ -116,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php require 'header.php'; ?>
 
-    <main class="container-cadastro" style="max-width: 600px;">
+    <main class="container-cadastro">
         
         <div class="cadastro-header">
             <div class="cadastro-abas">

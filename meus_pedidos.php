@@ -1,7 +1,4 @@
 <?php
-/*
- * Documentação: Página Meus Pedidos (meus_pedidos.php)
- */
 
 require 'conexao.php';
 
@@ -11,14 +8,13 @@ if (!isset($_SESSION['usuario_id'])) {
 }
 
 $usuario_id = $_SESSION['usuario_id'];
-$pedidos = [];
+$pedidos = []; 
 
 try {
     $sql = "SELECT * FROM pedidos WHERE usuario_id = ? ORDER BY data_pedido DESC";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$usuario_id]);
     $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
 } catch (PDOException $e) {
     die("Erro ao buscar pedidos: " . $e->getMessage());
 }
@@ -32,13 +28,12 @@ try {
     <title>Roseglaze - Meus Pedidos</title>
     
     <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="admin/admin.css"> 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: #f0f0f0;"> <?php require 'header.php'; ?>
 
-    <?php require 'header.php'; ?>
-
-    <main class="container-cadastro" style="max-width: 800px;">
+    <main class="container-conta">
         
         <div class="cadastro-header">
             <div class="cadastro-abas">
@@ -47,11 +42,11 @@ try {
             </div>
         </div>
         
-        <div class="conta-painel">
+        <div class="conta-painel" style="background-color: #fff; padding: 30px; border: 1px solid #eee; border-radius: 8px;">
             
             <?php if (count($pedidos) > 0): ?>
                 
-                <table class="tabela-pedidos">
+                <table class="tabela-admin">
                     <thead>
                         <tr>
                             <th>Nº do Pedido</th>
@@ -64,11 +59,8 @@ try {
                         <?php foreach ($pedidos as $pedido): ?>
                             <tr>
                                 <td>#<?php echo str_pad($pedido['id'], 4, '0', STR_PAD_LEFT); ?></td>
-                                
                                 <td><?php echo date('d/m/Y', strtotime($pedido['data_pedido'])); ?></td>
-                                
                                 <td><?php echo htmlspecialchars($pedido['status_pedido']); ?></td>
-                                
                                 <td>R$ <?php echo number_format($pedido['preco_total'], 2, ',', '.'); ?></td>
                             </tr>
                         <?php endforeach; ?>
@@ -78,7 +70,7 @@ try {
             <?php else: ?>
                 
                 <div style="text-align: center; padding: 40px;">
-                    <p>Ainda não foram realizadas encomendas.</p>
+                    <p style="color: #555;">Ainda não foram realizadas encomendas.</p>
                     <a href="index.php" class="btn-add-to-bag" style="width: 300px; text-decoration: none;">Começar a comprar</a>
                 </div>
 
@@ -87,7 +79,6 @@ try {
         </div>
 
     </main>
-
 
     <?php require 'footer.php'; ?>
 
