@@ -4,7 +4,6 @@
             background-color: #f9f9f9;
         }
    
-        /* container principal do header */
         .main-header {
             display: flex; 
             justify-content: space-between; 
@@ -14,7 +13,6 @@
             background-color: #ffffff;
         }
 
-        /* menus de navegação*/
         .main-header nav {
             display: flex; 
             gap: 25px; 
@@ -121,7 +119,6 @@
     color: #fff;
     }
 
-    /* Botão Secundário (Veja Campanha) */
     .btn-secondary {
     background-color: transparent;
     color: #fff;
@@ -248,49 +245,7 @@
     margin: 0;
     opacity: 0.8; 
     }
- /* ==========================================================*/
-    .main-footer {
-    width: 100%;
-    background-color: #ffffff; 
-    border-top: 1px solid #eee; 
-    margin-top: 60px;
-    }
 
-    .footer-container {
-    width: 90%;
-    max-width: 1400px;
-    margin: 0 auto; 
-    padding: 40px 0; 
-    text-align: center;
-    }
-
-    .footer-nav {
-    display: flex;
-    justify-content: center; 
-    flex-wrap: wrap;
-    gap: 30px; 
-    margin-bottom: 30px;
-    }
-
-    .footer-nav a {
-    text-decoration: none;
-    color: #333;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    }
-
-    .footer-nav a:hover {
-    color: #000;
-    text-decoration: underline;
-    }
-
-    .footer-copyright p {
-    font-size: 0.8rem;
-    color: #777;
-    margin: 0;
-    }
-/* ==========================================================*/
     .product-page-container {
     display: flex;  
     width: 90%;
@@ -507,3 +462,399 @@
     color: #555;
     margin: 0;
 }
+
+.container-cadastro {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.cadastro-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cadastro-abas {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+.cadastro-abas a {
+    text-decoration: none;
+    color: #888;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid transparent;
+}
+
+.cadastro-abas a.aba-ativa {
+    color: #000;
+    border-bottom-color: #000;
+}
+
+.cadastro-abas a.aba-inativa:hover {
+    color: #000;
+}
+
+.cadastro-descricao {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 450px;
+    margin: 0 auto; 
+}
+
+.form-cadastro {
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.form-grupo-minimalista {
+    margin-bottom: 30px;
+}
+
+.form-grupo-minimalista label {
+    font-size: 0.8rem;
+    color: #555;
+    display: block; 
+    margin-bottom: 5px;
+}
+
+.form-grupo-minimalista input[type="text"],
+.form-grupo-minimalista input[type="email"],
+.form-grupo-minimalista input[type="password"],
+.form-grupo-minimalista input[type="tel"],
+.form-grupo-minimalista select {
+    width: 100%;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    padding: 10px 0; 
+    font-size: 1rem;
+    border-radius: 0;
+}
+
+.form-grupo-minimalista input:focus,
+.form-grupo-minimalista select:focus {
+    outline: none;
+    border-bottom-color: #000;
+}
+
+.form-grupo-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 30px 0;
+}
+.form-grupo-checkbox input[type="checkbox"] {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+.form-grupo-checkbox label {
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.cadastro-termos {
+    font-size: 0.8rem;
+    color: #777;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-cadastro .btn-add-to-bag {
+    width: 100%;
+}
+
+.conta-bemvindo-faixa {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 50px;
+}
+.conta-bemvindo-faixa p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+.conta-bemvindo-faixa h2 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2.5rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 10px 0 0 0;
+}
+
+.container-conta {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.conta-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px;
+}
+
+.conta-dashboard-coluna h4 {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.conta-link-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+.conta-link-item .material-icons-outlined {
+    font-size: 28px;
+    color: #555;
+}
+.conta-link-item strong {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.conta-link-item p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+    margin: 5px 0 10px 0;
+}
+.conta-link-item a {
+    font-size: 0.9rem;
+    color: #000;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.conta-detalhes-grid {
+    margin-top: 40px;
+}
+.conta-detalhes-grid .secao-titulo {
+    text-align: center;
+    border: none;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.conta-detalhes-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px 40px; 
+}
+
+.conta-detalhes-links a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='18' viewBox='0 96 960 960' width='18'%3E%3Cpath d='m375 816-43-43 198-198-198-198 43-43 241 241-241 241Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right center;
+    transition: all 0.2s ease;
+}
+.conta-detalhes-links a:hover {
+    color: #555;
+    border-bottom-color: #aaa;
+}
+
+.danger-zone {
+    background-color: #fffafb;
+    border: 1px solid #e0b4b4; 
+    border-radius: 8px;
+    padding: 25px;
+}
+.danger-zone h3 {
+    margin: 0 0 10px 0;
+    color: #c00; 
+}
+.danger-zone p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+
+.btn-perigo {
+    background-color: #c00;
+    color: #fff;
+    border: 1px solid #c00;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-perigo:hover {
+    background-color: #a00; 
+}
+
+.link-voltar {
+    display: inline-block;
+    text-decoration: none;
+    color: #555;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.link-voltar:hover {
+    color: #000;
+}
+.link-voltar .material-icons-outlined {
+    font-size: 20px;
+}
+
+.conta-titulo-principal {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2rem;
+    font-weight: normal;
+    text-align: center;
+    margin: 20px 0 40px 0;
+}
+
+.conta-painel {
+    background-color: #fff;
+    padding: 40px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.form-secao {
+    margin-bottom: 40px;
+}
+.form-secao-titulo {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.conta-form {
+    width: 100%;
+    max-width: 500px; 
+    margin: 0 auto;
+}
+.conta-form p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 20px 0;
+}
+
+.conta-form-grupo {
+    margin-bottom: 30px;
+}
+.conta-form-grupo label {
+    font-size: 0.8rem;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.conta-form-grupo input[type="text"],
+.conta-form-grupo input[type="email"],
+.conta-form-grupo input[type="password"],
+.conta-form-grupo input[type="tel"] 
+.conta-form-grupo select { 
+    width: 100%;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    padding: 10px 0;
+    font-size: 1rem;
+    border-radius: 0;
+}
+
+.conta-form-grupo input:focus {
+    outline: none;
+    border-bottom-color: #000;
+}
+
+.conta-form-grupo input[readonly] {
+    background-color: #f9f9f9;
+    color: #777;
+    border-bottom-style: dashed;
+}
+
+.conta-form .btn-add-to-bag {
+    width: auto; 
+    padding: 14px 28px;
+}
+
+
+
+
+ /* ==========================================================*/
+    .main-footer {
+    width: 100%;
+    background-color: #ffffff; 
+    border-top: 1px solid #eee; 
+    margin-top: 60px;
+    }
+
+    .footer-container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto; 
+    padding: 40px 0; 
+    text-align: center;
+    }
+
+    .footer-nav {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;
+    gap: 30px; 
+    margin-bottom: 30px;
+    }
+
+    .footer-nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    }
+
+    .footer-nav a:hover {
+    color: #000;
+    text-decoration: underline;
+    }
+
+    .footer-copyright p {
+    font-size: 0.8rem;
+    color: #777;
+    margin: 0;
+    }
+/* ==========================================================*/
