@@ -1,0 +1,113 @@
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-header a {
+    text-decoration: none;
+    color: #000;
+}
+
+.admin-header-logo a {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.admin-header-user {
+    font-size: 0.9rem;
+}
+
+.admin-header-user span {
+    margin-right: 15px;
+    color: #555;
+}
+
+.admin-header-user a {
+    color: #c00;
+    font-weight: bold;
+}
+
+.admin-dashboard {
+    margin-top: 40px;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.admin-card {
+    display: block;
+    background-color: #ffffff;
+    padding: 30px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.admin-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-color: #aaa;
+}
+
+.admin-card h3 {
+    font-size: 1.3rem;
+    color: #000;
+    margin: 0 0 10px 0;
+}
+
+.admin-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tabela-admin {
+    width: 100%;
+    background-color: #ffffff;
+    border-collapse: collapse; 
+    border: 1px solid #ddd;
+}
+
+.tabela-admin th,
+.tabela-admin td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.tabela-admin th {
+    background-color: #f9f9f9;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.tabela-admin td {
+    font-size: 0.9rem;
+}
+
+.tabela-acoes a {
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+    color: #007bff; 
+}
+.tabela-acoes a:hover {
+    text-decoration: underline;
+}
