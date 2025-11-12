@@ -1,7 +1,4 @@
 <?php
-/*
- * Documentação: Página de Checkout (checkout.php)
- */
 
 require 'conexao.php';
 
@@ -12,7 +9,6 @@ if (isset($_SESSION['sacola']) && !empty($_SESSION['sacola'])) {
     
     $ids_na_sacola = $_SESSION['sacola'];
     $placeholders = implode(',', array_fill(0, count($ids_na_sacola), '?'));
-    
     $sql = "SELECT * FROM oculos WHERE id IN ($placeholders)";
     
     try {
@@ -23,8 +19,7 @@ if (isset($_SESSION['sacola']) && !empty($_SESSION['sacola'])) {
         foreach ($produtos_na_sacola as $produto) {
             $preco_total += $produto['preco'];
         }
-
-    } catch (\PDOException $e) {
+    } catch (PDOException $e) {
         die("Erro ao buscar produtos da sacola: " . $e->getMessage());
     }
 }
@@ -35,7 +30,6 @@ if (empty($produtos_na_sacola)) {
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -46,9 +40,7 @@ if (empty($produtos_na_sacola)) {
     <link rel="stylesheet" href="css/estilo.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
-<body>
-
-    <?php require 'header.php'; ?>
+<body style="background-color: #f0f0f0;"> <?php require 'header.php'; ?>
 
     <main class="container-produtos">
         
@@ -59,22 +51,21 @@ if (empty($produtos_na_sacola)) {
             <div class="checkout-formulario">
                 <h3>Informações de Entrega</h3>
                 
-                <div class="form-grupo">
+                <div class="form-grupo-minimalista">
                     <label for="nome_cliente">Nome Completo</label>
                     <input type="text" id="nome_cliente" name="nome_cliente" required>
                 </div>
                 
-                <div class="form-grupo">
+                <div class="form-grupo-minimalista">
                     <label for="email_cliente">Email</label>
                     <input type="email" id="email_cliente" name="email_cliente" required>
                 </div>
 
-                <div class="form-grupo">
+                <div class="form-grupo-minimalista">
                     <label for="endereco_entrega">Endereço Completo</label>
                     <textarea id="endereco_entrega" name="endereco_entrega" rows="4" required></textarea>
                 </div>
-
-                </div>
+            </div>
 
             <div class="checkout-sumario">
                 <h3>Sua Sacola</h3>
@@ -97,9 +88,9 @@ if (empty($produtos_na_sacola)) {
                 <button type="submit" class="btn-add-to-bag">Finalizar Pedido</button>
             </div>
             
-        </form> </main> 
-        
-        <?php require 'footer.php'; ?>
+        </form> </main>
+
+    <?php require 'footer.php'; ?>
 
 </body>
 </html>

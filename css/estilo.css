@@ -812,7 +812,100 @@
     padding: 14px 28px;
 }
 
+.checkout-layout {
+    display: flex;
+    gap: 50px; 
+}
 
+.checkout-formulario {
+    flex: 6; 
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+.checkout-formulario h3 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+
+.form-grupo-minimalista textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    padding: 10px 0;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 0;
+}
+.form-grupo-minimalista textarea:focus {
+    outline: none;
+    border-bottom-color: #000;
+}
+
+.checkout-sumario {
+    flex: 4; 
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    align-self: flex-start; 
+}
+.checkout-sumario h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.checkout-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.checkout-item:last-of-type {
+    border-bottom: none; 
+}
+
+.checkout-item-img-placeholder {
+    width: 70px;
+    height: 70px;
+    background-color: #f0f0f0;
+    flex-shrink: 0;
+}
+
+.checkout-item-detalhes {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+.checkout-item-detalhes span:first-child {
+    font-weight: bold;
+}
+
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #000;
+    margin-bottom: 20px;
+}
+
+.checkout-sumario .btn-add-to-bag {
+    width: 100%;
+}
 
 
  /* ==========================================================*/
