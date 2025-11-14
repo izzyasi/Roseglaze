@@ -94,8 +94,8 @@ try {
             <h4 class="secao-titulo">DETALHES DA CONTA</h4>
             
             <nav class="conta-detalhes-links">
-                <a href="#">Início de sessão e Segurança</a>
-                <a href="#">Detalhes pessoais</a>
+                <a href="login-seguranca.php">Início de sessão e Segurança</a>
+                <a href="detalhes-pessoais.php">Detalhes pessoais</a>
                 <a href="#">Endereços</a>
                 <a href="#">Métodos de pagamento</a>
                 <a href="#">Preferências</a>
@@ -107,6 +107,8 @@ try {
     </main>
 
     <?php require 'footer.php'; ?>
+    <?php require 'sacola_lateral.php'; ?>
+    <?php require 'busca_overlay.php'; ?>
 
 </body>
 </html>

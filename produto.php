@@ -120,6 +120,7 @@ $produto = null;
     </script>
     <?php require 'footer.php'; ?>
     <?php require 'sacola_lateral.php'; ?>
+    <?php require 'busca_overlay.php'; ?>
     <script src="js/main.js"></script>
 </body>
 </html>

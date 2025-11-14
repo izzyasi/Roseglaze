@@ -91,6 +91,8 @@ if (empty($produtos_na_sacola)) {
         </form> </main>
 
     <?php require 'footer.php'; ?>
+    <?php require 'sacola_lateral.php'; ?>
+    <?php require 'busca_overlay.php'; ?>
 
 </body>
 </html>

@@ -244,6 +244,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
     <?php require 'footer.php'; ?>
+    <?php require 'sacola_lateral.php'; ?>
+    <?php require 'busca_overlay.php'; ?>
     
     <script>
     document.addEventListener('DOMContentLoaded', function() {

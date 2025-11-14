@@ -195,7 +195,7 @@ try {
             <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
 
             <div class="form-secao">
-                <h3 class="form-secao-titulo">NÚMEROS DE CONTACTO</h3>
+                <h3 class="form-secao-titulo">NÚMEROS DE CONTATO</h3>
                 
                 <div>
                     <?php if (!empty($erros_telefone)): ?>
@@ -231,6 +231,8 @@ try {
     </main>
 
     <?php require 'footer.php'; ?>
+    <?php require 'sacola_lateral.php'; ?>
+    <?php require 'busca_overlay.php'; ?>
     
 </body>
 </html>

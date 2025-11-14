@@ -1,7 +1,5 @@
 <?php
-/*
- * Documentação: Sacola Lateral 
- */
+
 ?>
 
 <div id="sacola-lateral-container" class="sacola-lateral-container escondido">

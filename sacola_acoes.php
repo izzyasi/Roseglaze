@@ -1,9 +1,4 @@
 <?php
-/*
- * Documentação: Ações da Sacola (sacola_acoes.php) 
- * 1. acao: 'adicionar' -> Adiciona um item à sessão.
- * 2. acao: 'get_sacola' -> Lê a sessão, busca no banco e devolve a lista de produtos.
- */
 
 require 'conexao.php';
 

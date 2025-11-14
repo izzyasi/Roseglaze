@@ -10,10 +10,10 @@ if (isset($_SESSION['sacola'])) {
 <header class="main-header">
         
     <nav class="nav-left">
-        <a href="#">Óculos de Sol</a>
-        <a href="#">Óculos</a>
-        <a href="#">Coleções</a>
-        <a href="#">Lojas</a>
+        <a href="catalogo.php?tipo=Sol">Óculos de Sol</a>
+        <a href="catalogo.php?tipo=Sem Grau">Óculos</a>
+        <a href="colecoes.php">Coleções</a>
+        <a href="lojas.php">Lojas</a>
     </nav>
     
     <div class="logo-container">
@@ -21,7 +21,7 @@ if (isset($_SESSION['sacola'])) {
     </div>
     
     <nav class="nav-right">
-    <a href="#"><span class="material-icons-outlined">search</span></a>
+    <a href="#busca"><span class="material-icons-outlined">search</span></a>
 
     <?php if (isset($_SESSION['usuario_id'])): ?>
         <a href="minha_conta.php">
@@ -32,6 +32,11 @@ if (isset($_SESSION['sacola'])) {
             <span class="material-icons-outlined">person_outline</span>
         </a>
     <?php endif; ?>
+
+
+    <a href="#">
+        <span class="material-icons-outlined">star_border</span>
+    </a>
 
 
     <a href="#sacola"> 
