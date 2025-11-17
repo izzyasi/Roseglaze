@@ -59,28 +59,39 @@ try {
 <body>
     <?php require 'header.php'; ?>
     <section class="hero-section">
-        <?php
-        if (count($colecoes) > 0):
-            $destaque = $colecoes[0]; 
-        ?>
-            <div class="hero-content" 
-                 style="background-image: url('<?php echo htmlspecialchars($destaque['imagem_principal']); ?>');">
-                <div class="hero-text-overlay">
-                    <div class="hero-text">
-                        <h1><?php echo htmlspecialchars($destaque['nome']); ?></h1>
-                        <div class="hero-buttons">
-                            <a href="colecao.php?id=<?php echo htmlspecialchars($destaque['id']); ?>" class="btn btn-primary">Compre Agora</a>
-                            <a href="#" class="btn btn-secondary">Veja a Campanha</a>
-                        </div>
-                    </div>
-                </div>
+    
+    <div class="hero-carousel" id="hero-carousel">
+        
+        <div class="hero-slide active" style="background-image: url('caminho/para/sua/imagem1.jpg');"></div>
+        
+        <div class="hero-slide" style="background-image: url('caminho/para/sua/imagem2.jpg');"></div>
+        
+        <div class="hero-slide" style="background-image: url('caminho/para/sua/imagem3.jpg');"></div>
+
+        <button class="carousel-btn prev-btn" id="prev-slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="carousel-btn next-btn" id="next-slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <div class="carousel-indicators">
+            <div class="indicator-bar active" data-slide="0"></div>
+            <div class="indicator-bar" data-slide="1"></div>
+            <div class="indicator-bar" data-slide="2"></div>
+        </div>
+    </div>
+
+    <div class="hero-text-overlay">
+        <div class="hero-text">
+            <h1>ROSEGLAZE 2025</h1>
+            
+            <div class="hero-buttons">
+                <a href="colecoes.php" class="btn-hero-outline">Ver Coleção</a>
             </div>
-        <?php else: ?>
-            <div class="hero-content-vazio">
-                <h2>Bem-vindo à Roseglaze</h2>
-            </div>
-        <?php endif; ?>
-    </section>
+        </div>
+    </div>
+
+</section>
 
     <section class="container-produtos">
         <h2 class="secao-titulo">Novidades</h2>

@@ -16,6 +16,51 @@ document.addEventListener('DOMContentLoaded', function() {
         handleScroll();
     }
 
+    const slides = document.querySelectorAll('.hero-slide');
+    const indicators = document.querySelectorAll('.indicator-bar'); 
+    const nextBtn = document.getElementById('next-slide');
+    const prevBtn = document.getElementById('prev-slide');
+    
+    if (slides.length > 0) {
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            indicators.forEach(bar => bar.classList.remove('active'));
+            if (indicators[index]) {
+                indicators[index].classList.add('active');
+            }
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                currentSlide++;
+                if (currentSlide >= totalSlides) currentSlide = 0;
+                showSlide(currentSlide);
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                currentSlide--;
+                if (currentSlide < 0) currentSlide = totalSlides - 1;
+                showSlide(currentSlide);
+            });
+        }
+        indicators.forEach((bar, index) => {
+            bar.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+        setInterval(function() {
+            currentSlide++;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            showSlide(currentSlide);
+        }, 5000); 
+    }
+
     const sacolaContainer = document.getElementById('sacola-lateral-container');
     const btnFecharSacola = document.getElementById('btn-fechar-sacola');
     const sacolaOverlay = document.getElementById('sacola-overlay');
