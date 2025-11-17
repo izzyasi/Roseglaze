@@ -1194,3 +1194,132 @@ body {
     font-weight: 400;
     margin-top: 2px; 
 }
+
+/* ----------------------------------------------------------
+ * PÁGINA WISHLIST (Estilo Minimalista)
+ * ---------------------------------------------------------- */
+
+.container-wishlist {
+    width: 90%;
+    max-width: 1200px;
+    margin: 120px auto 80px auto; 
+    text-align: center;
+    min-height: 50vh;
+}
+
+.wishlist-header h1 {
+    font-family: "Times New Roman", Times, serif; 
+    font-size: 1.5rem;
+    font-weight: normal;
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+}
+
+.wishlist-vazia-container {
+    padding: 60px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.wishlist-vazia-container h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.wishlist-vazia-container p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px 40px;
+}
+.wishlist-card {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+.btn-remover-wishlist {
+    position: absolute;
+    top: 0;
+    right: 20px; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 2;
+}
+.btn-remover-wishlist svg {
+    width: 18px;
+    height: 18px;
+    color: #000; 
+}
+
+.btn-remover-wishlist:hover svg {
+    opacity: 0.6;
+}
+
+.wishlist-img-link {
+    display: block;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.wishlist-img-placeholder {
+    width: 100%;
+    padding-top: 100%; 
+    background-color: #f9f9f9;
+}
+
+.wishlist-info h3 {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+    letter-spacing: 1px;
+}
+
+.wishlist-desc {
+    font-size: 0.85rem;
+    color: #555;
+    margin: 0 0 10px 0;
+}
+
+.wishlist-price {
+    font-size: 0.9rem;
+    color: #000;
+    margin: 0 0 15px 0;
+}
+
+.wishlist-ver-detalhes {
+    font-size: 0.8rem;
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.wishlist-ver-detalhes:hover {
+    border-bottom-color: #000;
+}
+
+@media (max-width: 768px) {
+    .wishlist-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .wishlist-grid {
+        grid-template-columns: 1fr; 
+    }
+}
