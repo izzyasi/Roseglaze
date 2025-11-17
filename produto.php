@@ -1,7 +1,5 @@
 <?php
-/*
- * Documentação: Página de Detalhe do Produto (produto.php)
- */
+
 require 'conexao.php';
 
 $produto = null;
@@ -29,7 +27,6 @@ $produto = null;
     exit; 
     }
 
-// --- FIM BACK-END ---
 ?>
 
 <!DOCTYPE html>
@@ -37,11 +34,8 @@ $produto = null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Roseglaze - <?php echo htmlspecialchars($produto['modelo']); ?></title>
-    
     <link rel="stylesheet" href="css/estilo.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
 
@@ -88,10 +82,15 @@ $produto = null;
         const addBtn = document.querySelector('.btn-add-to-bag');
         
         if (addBtn) {
+            const originalButtonText = addBtn.textContent; 
+
             addBtn.addEventListener('click', function() {
-                
-                const idProduto = this.dataset.idProduto;
-                
+
+                const botao = this;
+                const idProduto = botao.dataset.idProduto;
+                botao.disabled = true;
+                botao.textContent = 'Adicionando...';
+
                 fetch('sacola_acoes.php', {
                     method: 'POST', 
                     headers: {
@@ -104,15 +103,34 @@ $produto = null;
                 })
                 .then(response => response.json()) 
                 .then(data => {
-                    alert(data.mensagem); 
+                    if (data.novo_total !== undefined) {
+                        const contadorSacola = document.getElementById('contador-sacola');
+                        if (contadorSacola) {
+                            contadorSacola.innerHTML = data.novo_total;
+                            if (data.novo_total > 0) {
+                                contadorSacola.classList.remove('escondido');
+                            }
+                        }
+                    }
+
                     if (data.sucesso) {
-                        this.textContent = 'Adicionado!';
-                        this.disabled = true; 
+                        botao.textContent = 'Adicionado!';
+                        setTimeout(function() {
+                            botao.textContent = originalButtonText; 
+                            botao.disabled = false;          
+                        }, 1000);
+
+                    } else {
+                        alert(data.mensagem);
+                        botao.textContent = originalButtonText;
+                        botao.disabled = false;
                     }
                 })
                 .catch(error => {
                     console.error('Erro no fetch:', error);
                     alert('Ocorreu um erro ao conectar. Tente novamente.');
+                    botao.textContent = originalButtonText;
+                    botao.disabled = false;
                 });
             });
         }
