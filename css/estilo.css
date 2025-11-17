@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Playfair+Display:ital,wght@1,500&display=swap');
+
 /* ----------------------------------------------------------
  * ESTILOS GERAIS (Body, Botões, etc.)
  * ---------------------------------------------------------- */
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
     margin: 0;
     background-color: #f9f9f9;
 }
@@ -78,43 +81,86 @@ body {
  * ---------------------------------------------------------- */
 .main-header {
     display: flex; 
-    justify-content: space-between; 
     align-items: center; 
     padding: 20px 40px;
-    border-bottom: 1px solid #eee;
-    background-color: #ffffff;
+    border-bottom: 1px solid transparent; 
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    align-items: center; 
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
 }
 .main-header nav {
     display: flex; 
     gap: 25px; 
+    align-items: center;
 }
 .main-header nav a {
     text-decoration: none; 
     color: #000;
     font-size: 0.9rem;
-    text-transform: uppercase; 
     letter-spacing: 1px;
+    white-space: nowrap;
+}
+.main-header.header-scrolled {
+    background-color: rgba(255, 255, 255, 0); 
+    -webkit-backdrop-filter: blur(10px); 
+    backdrop-filter: blur(10px);      
+}
+.main-header.header-scrolled .nav-left a {
+    color: #000;
+}
+.main-header.header-scrolled .logo-container a {
+    color: #000;
+}
+.main-header.header-scrolled .nav-right a {
+    color: #1f1f1f; 
 }
 .logo-container {
     text-align: center; 
-    flex: 2;
+    flex: 1;
 }
 .logo-container a {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     text-decoration: none;
     color: #000;
-    font-family: "Times New Roman", Times, serif; 
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 2px;
 }
-.nav-left { flex: 1; }
-.nav-right { 
-    flex: 1; 
+.nav-left { 
+    flex: 1;
+}
+.nav-right {
+    display: flex; 
     justify-content: flex-end;
-    display: flex;
-    gap: 25px; 
+    align-items: center;
+    flex: 1;
 }
-.nav-right .material-icons-outlined {
-    font-size: 1.5rem;    
+.nav-right svg {
+    width: 24px;
+    height: 24px;
     vertical-align: middle;
+}
+
+.nav-right .icon-search svg {
+    width: 22px;
+    height: 22px;
+}
+
+.nav-right .icon-person svg {
+    width: 28px;
+    height: 28px;
+}
+
+.nav-right .icon-wishlist svg {
+    width: 28px;
+    height: 28px;
 }
 
 .main-footer {
@@ -159,7 +205,7 @@ body {
  * ---------------------------------------------------------- */
 .hero-section {
     width: 100%;
-    height: calc(100vh - 120px);
+    height: 100vh;
     overflow: hidden;
 }   
 .hero-content {
@@ -429,9 +475,6 @@ body {
     padding: 0;
     line-height: 1;
 }
-.btn-fechar-sacola .material-icons-outlined {
-    font-size: 28px;
-}
 .sacola-itens-lista {
     flex: 1;
     overflow-y: auto;
@@ -469,19 +512,64 @@ body {
     background-color: #f0f0f0;
     flex-shrink: 0; 
 }
+
 .sacola-item-detalhes {
-    flex-grow: 1;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px; 
 }
-.sacola-item-detalhes h3 {
-    font-size: 1rem;
-    font-weight: bold;
-    margin: 0 0 5px 0;
-}
+
+.sacola-item-detalhes h3,
 .sacola-item-detalhes p {
+    margin: 0; 
+}
+
+.sacola-item-controles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.sacola-item-controles label {
     font-size: 0.9rem;
     color: #555;
-    margin: 0;
+    font-weight: bold;
+}
+
+.seletor-qtd-sacola {
+    padding: 5px 8px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.btn-remover-item-sacola {
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.btn-remover-item-sacola:hover {
+    color: #000;
+}
+
+.btn-fechar-sacola svg {
+    width: 28px; 
+    height: 28px;
+    color: #000;  
+    transition: color 0.3s ease;
+}
+
+.btn-fechar-sacola:hover svg {
+    color: #555;
 }
 
 /* ----------------------------------------------------------
@@ -639,10 +727,6 @@ body {
     gap: 15px;
     align-items: flex-start;
 }
-.conta-link-item .material-icons-outlined {
-    font-size: 28px;
-    color: #555;
-}
 .conta-link-item strong {
     font-size: 1rem;
     font-weight: bold;
@@ -719,8 +803,9 @@ body {
 .link-voltar:hover {
     color: #000;
 }
-.link-voltar .material-icons-outlined {
-    font-size: 20px;
+.link-voltar svg {
+    width: 20px; 
+    height: 20px;
 }
 .conta-titulo-principal {
     font-family: "Times New Roman", Times, serif;
@@ -734,6 +819,13 @@ body {
     padding: 40px;
     border: 1px solid #eee;
     border-radius: 8px;
+}
+.conta-link-item svg {
+    width: 28px;
+    height: 28px;
+    color: #555;
+    flex-shrink: 0;
+    margin-top: 2px; 
 }
 .form-secao {
     margin-bottom: 40px;
@@ -768,7 +860,6 @@ body {
     margin-bottom: 5px;
 }
 
-/* --- ERRO CORRIGIDO (VÍRGULA ADICIONADA) --- */
 .conta-form-grupo input[type="text"],
 .conta-form-grupo input[type="email"],
 .conta-form-grupo input[type="password"],
@@ -947,13 +1038,12 @@ body {
 .btn-banner-link:hover {
     opacity: 0.8;
 }
-.btn-banner-link .material-icons-outlined {
-    font-size: 1.1rem;
+.btn-banner-link svg {
+    width: 1.1rem;
+    height: 1.1rem; 
     position: relative;
-    top: -1px; 
-    font-weight: 300 !important;
+    top: -1px;
 }
-
 /* ----------------------------------------------------------
  * OVERLAY DE BUSCA (busca_overlay.php)
  * ---------------------------------------------------------- */
@@ -995,9 +1085,15 @@ body {
     padding: 0;
     line-height: 1;
 }
-.btn-fechar-busca .material-icons-outlined {
-    font-size: 32px;
-    color: #555;
+.btn-fechar-busca svg {
+    width: 32px;   
+    height: 32px;
+    color: #555;  
+    transition: color 0.3s ease;
+}
+
+.btn-fechar-busca:hover svg {
+    color: #000;
 }
 .form-busca-overlay {
     display: flex;
@@ -1006,10 +1102,12 @@ body {
     margin: 80px auto 40px auto;
     border-bottom: 2px solid #000;
 }
-.form-busca-overlay .material-icons-outlined {
-    font-size: 28px;
-    color: #555;
+.form-busca-overlay svg {
+    width: 22px; 
+    height: 22px;
+    color: #555; 
     padding: 10px 0;
+    flex-shrink: 0; 
 }
 .campo-busca-overlay {
     flex-grow: 1;
@@ -1068,10 +1166,31 @@ body {
     padding: 0;
     cursor: pointer;
 }
-.btn-wishlist-busca .material-icons-outlined {
-    font-size: 24px;
-    color: #000;
+.btn-wishlist-busca svg {
+    width: 24px;   
+    height: 24px;
+    color: #000;  
+    transition: color 0.3s ease;
 }
-.btn-wishlist-busca:hover .material-icons-outlined {
+.btn-wishlist-busca svg.escondido {
+    display: none;
+}
+
+.btn-wishlist-busca:hover svg {
     color: #555;
+}
+.sacola-link-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.sacola-contador-numero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #1d1c1c;
+    font-size: 0.7rem;
+    font-weight: 400;
+    margin-top: 2px; 
 }

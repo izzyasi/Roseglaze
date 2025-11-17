@@ -135,16 +135,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roseglaze - Segurança</title>
-    
     <link rel="stylesheet" href="css/estilo.css"> 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body style="background-color: #f0f0f0;"> <?php require 'header.php'; ?>
 
     <main class="container-conta">
         
         <a href="minha_conta.php" class="link-voltar">
-            <span class="material-icons-outlined">chevron_left</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
+                fill="none" stroke="currentColor" stroke-width="2" 
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
             A MINHA CONTA
         </a>
         

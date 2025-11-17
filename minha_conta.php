@@ -35,9 +35,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roseglaze - Minha Conta</title>
-    
     <link rel="stylesheet" href="css/estilo.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
 
@@ -55,7 +53,13 @@ try {
             <div class="conta-dashboard-coluna">
                 <h4>OS SEUS PRODUTOS</h4>
                 <div class="conta-link-item">
-                    <span class="material-icons-outlined">shopping_bag_outline</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
+                         fill="none" stroke="currentColor" stroke-width="2" 
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
                     <div>
                         <strong>Pedidos</strong>
                         <p>Ainda não foram realizadas encomendas.</p>
@@ -67,7 +71,11 @@ try {
             <div class="conta-dashboard-coluna">
                 <h4>SELEÇÕES</h4>
                 <div class="conta-link-item">
-                    <span class="material-icons-outlined">star_border</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
+                         fill="none" stroke="currentColor" stroke-width="2" 
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
                     <div>
                         <strong>Lista de desejos</strong>
                         <p>A sua lista de desejos está atualmente vazia.</p>
@@ -79,7 +87,12 @@ try {
             <div class="conta-dashboard-coluna">
                 <h4>SERVIÇOS</h4>
                 <div class="conta-link-item">
-                    <span class="material-icons-outlined">support_agent</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
+                         fill="none" stroke="currentColor" stroke-width="2" 
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path>
+                    </svg>
                     <div>
                         <strong>Recomendações e serviços</strong>
                         <p>Oferecemos serviços de reparação e manutenção.</p>

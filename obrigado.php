@@ -1,7 +1,4 @@
 <?php
-/*
- * Documentação: Página de Obrigado (obrigado.php)
- */
 
 require 'conexao.php';
 
@@ -12,9 +9,7 @@ require 'conexao.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roseglaze - Pedido Confirmado</title>
-    
     <link rel="stylesheet" href="css/estilo.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
 

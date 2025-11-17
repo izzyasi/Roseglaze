@@ -19,9 +19,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roseglaze - Coleções</title>
-    
     <link rel="stylesheet" href="css/estilo.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body style="background-color: #f0f0f0;"> <?php require 'header.php'; ?>
 
@@ -41,7 +39,13 @@ try {
                                 
                                 <div class="colecao-banner-buttons">
                                     <a href="colecao.php?id=<?php echo htmlspecialchars($colecao['id']); ?>" class="btn-banner-link">
-                                        Ver Coleção <span class="material-icons-outlined">north_east</span>
+                                        Ver Coleção
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
+                                            fill="none" stroke="currentColor" stroke-width="2" 
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                                            <polyline points="7 7 17 7 17 17"></polyline>
+                                        </svg>
                                     </a>
                                 </div>
                             </div>
