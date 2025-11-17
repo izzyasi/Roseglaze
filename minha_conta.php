@@ -79,7 +79,7 @@ try {
                     <div>
                         <strong>Lista de desejos</strong>
                         <p>A sua lista de desejos está atualmente vazia.</p>
-                        <a href="#">Ver lista de desejos</a>
+                        <a href="wishlist.php">Ver lista de desejos</a>
                     </div>
                 </div>
             </div>
