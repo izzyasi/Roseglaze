@@ -36,22 +36,10 @@ if (isset($pdo)) {
             <input 
                 type="search" 
                 name="q" 
-                placeholder="Please enter the search term(s)" 
+                placeholder="Veyn..." 
                 class="campo-busca-overlay"
             >
         </form>
-        
-        <div id="busca-trends" class="busca-sugestoes">
-            <h4 class="busca-sugestoes-titulo">SEARCH TRENDS</h4>
-            
-            <div class="busca-trends-grid"> <?php foreach ($trends as $produto_trend): ?>
-                    <a href="produto.php?id=<?php echo $produto_trend['id']; ?>" class="busca-item-sugestao">
-                        <div class="busca-item-img-placeholder"></div>
-                        <p><?php echo htmlspecialchars($produto_trend['modelo']); ?></p> 
-                    </a>
-                <?php endforeach; ?>
-            </div>
-        </div>
 
         <div id="busca-resultados" class="busca-sugestoes escondido">
             </div>
