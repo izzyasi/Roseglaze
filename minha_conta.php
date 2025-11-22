@@ -1,8 +1,4 @@
 <?php
-/*
- * Documentação: Página Minha Conta (minha_conta.php)
- */
-
 require 'conexao.php';
 
 if (!isset($_SESSION['usuario_id'])) {
@@ -96,7 +92,7 @@ try {
                     <div>
                         <strong>Recomendações e serviços</strong>
                         <p>Oferecemos serviços de reparação e manutenção.</p>
-                        <a href="#">Encontrar um Espaço Roseglaze</a>
+                        <a href="lojas.php">Encontrar um Espaço Roseglaze</a>
                     </div>
                 </div>
             </div>
@@ -109,10 +105,6 @@ try {
             <nav class="conta-detalhes-links">
                 <a href="login-seguranca.php">Início de sessão e Segurança</a>
                 <a href="detalhes-pessoais.php">Detalhes pessoais</a>
-                <a href="#">Endereços</a>
-                <a href="#">Métodos de pagamento</a>
-                <a href="#">Preferências</a>
-                
                 <a href="logout.php">Sair</a>
             </nav>
         </div>
