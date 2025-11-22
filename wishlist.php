@@ -62,7 +62,15 @@ try {
                         </button>
 
                         <a href="produto.php?id=<?php echo $produto['id']; ?>" class="wishlist-img-link">
-                            <div class="wishlist-img-placeholder"></div>
+                            <?php 
+                                $img_url = !empty($produto['imagem']) ? 'imagens/' . $produto['imagem'] : ''; 
+                            ?>
+                            <div class="wishlist-img-placeholder" 
+                                style="background-image: url('<?php echo $img_url; ?>'); 
+                                background-size: cover; 
+                                background-position: center;
+                                background-color: #f0f0f0;">
+                            </div>
                         </a>
 
                         <div class="wishlist-info">
