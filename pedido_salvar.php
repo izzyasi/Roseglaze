@@ -1,7 +1,4 @@
 <?php
-/*
- * Documentação: Salvar Pedido (pedido_salvar.php)
- */
 
 require 'conexao.php';
 
@@ -18,22 +15,22 @@ if (!isset($_SESSION['sacola']) || empty($_SESSION['sacola'])) {
 $nome_cliente = trim($_POST['nome_cliente']);
 $email_cliente = trim($_POST['email_cliente']);
 $endereco_entrega = trim($_POST['endereco_entrega']);
-$ids_na_sacola = $_SESSION['sacola'];
+$ids_na_sacola = array_keys($_SESSION['sacola']);
 $placeholders = implode(',', array_fill(0, count($ids_na_sacola), '?'));
 $sql = "SELECT * FROM oculos WHERE id IN ($placeholders)";
-
 $stmt = $pdo->prepare($sql);
-$stmt->execute($ids_na_sacola);
+$stmt->execute($ids_na_sacola); 
 $produtos_da_sacola = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $preco_total_seguro = 0;
 foreach ($produtos_da_sacola as $produto) {
-    $preco_total_seguro += $produto['preco'];
+    $id = $produto['id'];
+    $qtd = $_SESSION['sacola'][$id]; 
+    $preco_total_seguro += $produto['preco'] * $qtd;
 }
 
 try {
     $pdo->beginTransaction();
-
     $sql_pedido = "INSERT INTO pedidos (preco_total, nome_cliente, endereco_entrega) 
                    VALUES (?, ?, ?)";
     
@@ -51,10 +48,13 @@ try {
     $stmt_item = $pdo->prepare($sql_item);
     
     foreach ($produtos_da_sacola as $produto) {
+        $id = $produto['id'];
+        $qtd_real = $_SESSION['sacola'][$id]; 
+
         $stmt_item->execute([
             $pedido_id,
             $produto['id'],
-            1, 
+            $qtd_real,   
             $produto['preco'] 
         ]);
     }
@@ -70,5 +70,4 @@ unset($_SESSION['sacola']);
 
 header('Location: obrigado.php');
 exit;
-
 ?>

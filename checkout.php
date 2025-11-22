@@ -1,26 +1,29 @@
 <?php
-
 require 'conexao.php';
 
 $produtos_na_sacola = []; 
 $preco_total = 0;
 
 if (isset($_SESSION['sacola']) && !empty($_SESSION['sacola'])) {
-    
-    $ids_na_sacola = $_SESSION['sacola'];
-    $placeholders = implode(',', array_fill(0, count($ids_na_sacola), '?'));
-    $sql = "SELECT * FROM oculos WHERE id IN ($placeholders)";
-    
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute($ids_na_sacola);
-        $produtos_na_sacola = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $ids_na_sacola = array_keys($_SESSION['sacola']);
+
+    if (!empty($ids_na_sacola)) {
+        $placeholders = implode(',', array_fill(0, count($ids_na_sacola), '?'));
+        $sql = "SELECT * FROM oculos WHERE id IN ($placeholders)";
         
-        foreach ($produtos_na_sacola as $produto) {
-            $preco_total += $produto['preco'];
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute($ids_na_sacola); 
+            $produtos_na_sacola = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   
+            foreach ($produtos_na_sacola as $produto) {
+                $id = $produto['id'];
+                $qtd = $_SESSION['sacola'][$id]; 
+                $preco_total += $produto['preco'] * $qtd;
+            }
+        } catch (PDOException $e) {
+            die("Erro ao buscar produtos da sacola: " . $e->getMessage());
         }
-    } catch (PDOException $e) {
-        die("Erro ao buscar produtos da sacola: " . $e->getMessage());
     }
 }
 
@@ -28,7 +31,6 @@ if (empty($produtos_na_sacola)) {
     header('Location: index.php'); 
     exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -39,7 +41,9 @@ if (empty($produtos_na_sacola)) {
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 
-<body style="background-color: #f0f0f0;"> <?php require 'header.php'; ?>
+<body style="background-color: #f0f0f0;"> 
+    
+    <?php require 'header.php'; ?>
 
     <main class="container-produtos">
         
@@ -69,12 +73,19 @@ if (empty($produtos_na_sacola)) {
             <div class="checkout-sumario">
                 <h3>Sua Sacola</h3>
                 
-                <?php foreach ($produtos_na_sacola as $produto): ?>
+                <?php foreach ($produtos_na_sacola as $produto): 
+                    $qtd = $_SESSION['sacola'][$produto['id']];
+                    $subtotal_item = $produto['preco'] * $qtd;
+                    $img_url = !empty($produto['imagem']) ? 'imagens/' . $produto['imagem'] : '';
+                ?>
                     <div class="checkout-item">
-                        <div class="checkout-item-img-placeholder"></div>
+                        <div class="checkout-item-img-placeholder" 
+                             style="background-image: url('<?php echo $img_url; ?>'); background-size: cover; background-position: center;">
+                        </div>
+                        
                         <div class="checkout-item-detalhes">
-                            <span><?php echo htmlspecialchars($produto['modelo']); ?> (x1)</span>
-                            <span>R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></span>
+                            <span><?php echo htmlspecialchars($produto['modelo']); ?> (x<?php echo $qtd; ?>)</span>
+                            <span>R$ <?php echo number_format($subtotal_item, 2, ',', '.'); ?></span>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -87,11 +98,14 @@ if (empty($produtos_na_sacola)) {
                 <button type="submit" class="btn-add-to-bag">Finalizar Pedido</button>
             </div>
             
-        </form> </main>
+        </form> 
+    </main>
 
     <?php require 'footer.php'; ?>
     <?php require 'sacola_lateral.php'; ?>
     <?php require 'busca_overlay.php'; ?>
+    
+    <script src="js/main.js"></script>
 
 </body>
 </html>
