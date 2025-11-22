@@ -277,12 +277,13 @@ body {
 }
 
 .container-produtos {
-    width: 90%; 
+    width: 100%; 
     max-width: 1400px;
-    margin: 60px auto;
     position: relative; 
     z-index: 2;  
     clear: both;
+    padding-top: 100px !important; 
+    margin-top: 0 !important;
 }
 .secao-titulo {
     font-family: "Times New Roman", Times, serif;
@@ -336,102 +337,230 @@ body {
  * PÁGINA INDEX (Espaços)
  * ---------------------------------------------------------- */
 .container-espacos {
-    width: 90%; 
-    max-width: 1400px;
-    margin: 60px auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 80px 40px;
+    background-color: #f9f9f9; 
+    box-sizing: border-box;
 }
+
+.espacos-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.espacos-header h2 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.8rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
 .espacos-grid {
-    display: grid; 
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px; 
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
+
 .espaco-card {
-    display: block; 
-    position: relative; 
-    height: 400px;
+    position: relative;
+    display: block;
+    height: 600px; 
     text-decoration: none;
-    color: #ffffff;
-    background-size: cover;
-    background-position: center;
-    transition: all 0.3s ease;
+    overflow: hidden;
 }
-.espaco-card:hover {
-    transform: scale(0.98); 
-}
-.espaco-overlay {
+
+.espaco-img {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: flex-end; 
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
 }
+
+.espaco-card:hover .espaco-img {
+    transform: scale(1.05);
+}
+
 .espaco-info {
-    padding: 25px; 
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: #fff;
+    z-index: 2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
+
 .espaco-info h3 {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
     margin: 0 0 5px 0;
+    letter-spacing: 1px;
 }
+
 .espaco-info p {
     font-size: 0.9rem;
+    opacity: 0.9;
     margin: 0;
-    opacity: 0.8; 
+}
+
+.espaco-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 40%);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .espacos-grid {
+        grid-template-columns: 1fr; 
+    }
+    .espaco-card {
+        height: 400px;
+    }
 }
 
 /* ----------------------------------------------------------
  * PÁGINA DE PRODUTO (produto.php)
  * ---------------------------------------------------------- */
 .product-page-container {
-    display: flex;  
-    width: 90%;
-    max-width: 1400px;
-    margin: 40px auto;
-    gap: 50px; 
+    display: flex;
+    width: 95%;          /* Quase a largura total */
+    max-width: 1800px;   /* Limite para telas gigantes */
+    margin: 0 auto;
+    gap: 60px;           /* Espaço entre galeria e detalhes */
+    align-items: flex-start; /* Essencial para o 'sticky' funcionar */
+    padding-bottom: 100px;
+    /* padding-top já é tratado pela regra global que criámos antes */
 }
+
+/* --- COLUNA DA ESQUERDA: GALERIA VERTICAL --- */
 .product-gallery {
-    flex: 1; 
+    flex: 6; /* Ocupa 60% da largura */
+    display: flex;
+    flex-direction: column; /* Imagens uma embaixo da outra */
+    gap: 10px; /* Espaço pequeno entre as fotos */
 }
-.product-image-main-placeholder {
+
+.product-image-slot {
     width: 100%;
-    padding-top: 100%; 
-    background-color: #f0f0f0; 
+    aspect-ratio: 3 / 4; /* Formato Retrato (Fashion) */
+    background-color: #f6f6f6; /* Cinza claro elegante */
+    background-size: cover;
+    background-position: center;
 }
+
+/* --- COLUNA DA DIREITA: DETALHES FIXOS --- */
 .product-details {
-    flex: 1;
-    text-align: left; 
+    flex: 4; /* Ocupa 40% da largura */
+    position: sticky; /* Faz a coluna "colar" ao topo */
+    top: 120px;       /* Distância do topo (considerando o header) */
+    padding-right: 20px;
 }
+
+/* Título e Ícone (Bookmark) na mesma linha */
+.product-header-row {
+    display: flex;
+    justify-content: space-between; /* Nome na esquerda, Estrela na direita */
+    align-items: flex-start;        /* Alinha pelo topo */
+    width: 100%;
+    position: relative;             /* Cria um contexto seguro */
+    margin-bottom: 10px;
+}
+
+/* 1. CORREÇÃO DA ESTRELA (Removemos o 'absolute' global) */
+.product-details .btn-wishlist-busca {
+    position: static !important;    /* Força a estrela a respeitar o flexbox */
+    transform: none !important;     /* Remove deslocamentos */
+    margin-top: 5px;                /* Ajuste fino para alinhar com o texto */
+    width: auto;
+    height: auto;
+}
+
+.product-details .btn-wishlist-busca svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* 2. POSIÇÃO DO PREÇO */
+.product-price {
+    display: block;
+    font-size: 1.1rem;
+    color: #000;
+    margin-bottom: 20px; /* Espaço antes das cores */
+}
+
+
 .product-title {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.5rem; 
+    font-family: "Inter", sans-serif; /* Fonte limpa */
+    font-size: 1.5rem;
+    font-weight: normal; /* Não muito negrito */
+    margin: 0;
+}
+
+
+/* Botão Adicionar à Sacola (Estilo Retangular Preto) */
+.btn-add-to-bag {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 18px;
+    font-size: 0.9rem;
     font-weight: bold;
     text-transform: uppercase;
-    margin: 0 0 10px 0;
+    cursor: pointer;
+    margin-bottom: 40px;
+    transition: background-color 0.3s;
 }
-.product-price {
-    font-size: 1rem; 
-    color: #333;
-    margin: 0 0 30px 0; 
+.btn-add-to-bag:hover {
+    background-color: #333;
 }
+.btn-add-to-bag:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+}
+
+/* Accordions (Detalhes, Envio) */
 .product-info-accordion {
+    border-top: 1px solid #eee;
+}
+.product-info-accordion:last-child {
     border-bottom: 1px solid #eee;
 }
+
 .product-info-accordion summary {
-    font-size: 0.9rem;
+    padding: 20px 0;
+    list-style: none;
+    cursor: pointer;
+    font-size: 0.85rem;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 20px 0;
-    cursor: pointer;
-    list-style: none; 
+    display: flex;
+    justify-content: space-between; /* Para colocar um "+" no futuro */
 }
-.info-content {
-    padding: 0 0 20px 0; 
-    font-size: 0.9rem;
-    color: #555;
+.product-info-accordion summary::-webkit-details-marker {
+    display: none;
 }
-.info-content p {
-    margin: 5px 0;
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .product-page-container {
+        flex-direction: column; /* Em mobile, um embaixo do outro */
+    }
+    .product-details {
+        position: static; /* Remove o sticky no mobile */
+        width: 100%;
+    }
 }
 
 /* ----------------------------------------------------------
@@ -1046,6 +1175,15 @@ body {
     justify-content: flex-start;
     gap: 15px;
 }
+.container-colecoes {
+    width: 100%; 
+    max-width: 1400px;
+    margin-top: 0;
+    position: relative; 
+    z-index: 2;  
+    clear: both;
+    padding-top: 100px !important;
+}
 .btn-banner-link {
     background: none;
     border: none;
@@ -1079,7 +1217,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: 999;
+    z-index: 2000 !important;
     background-color: #f9f9f9;
     visibility: hidden;
     opacity: 0;
@@ -1192,11 +1330,26 @@ body {
     padding: 0;
     cursor: pointer;
 }
-.btn-wishlist-busca svg {
-    width: 24px;   
-    height: 24px;
-    color: #000;  
-    transition: color 0.3s ease;
+.btn-wishlist-catalog svg {
+    width: 20px;
+    height: 20px;
+    stroke: #000;      /* A linha é sempre preta */
+    transition: all 0.3s ease;
+}
+
+/* 2. Estrela VAZIA (Transparente) */
+.btn-wishlist-catalog .wishlist-icon-empty {
+    fill: transparent; 
+}
+
+/* 3. Estrela CHEIA (Preta Sólida) - ESTA É A CORREÇÃO! */
+.btn-wishlist-catalog .wishlist-icon-filled {
+    fill: #000 !important; /* Força o preenchimento preto */
+}
+
+/* 4. Hover (Opcional: preenche a vazia ao passar o mouse) */
+.btn-wishlist-catalog:hover .wishlist-icon-empty {
+    fill: rgba(0, 0, 0, 0.1); /* Um cinza leve */
 }
 .btn-wishlist-busca svg.escondido {
     display: none;
@@ -1418,4 +1571,434 @@ body {
 
 .indicator-bar.active {
     background-color: #ffffff;
+}
+
+/* --- SECÇÃO NOVIDADES --- */
+
+.novidades-section {
+    width: 100%;
+    padding: 60px 40px; 
+    background-color: #ffffff;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2; 
+}
+
+.novidades-header {
+    margin-bottom: 40px;
+}
+
+.novidades-header h2 {
+    font-family: "Arial", sans-serif;
+    font-size: 0.9rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    letter-spacing: 1px;
+}
+
+.link-more {
+    font-size: 0.8rem;
+    text-decoration: underline;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.novidades-scroll-container {
+    display: flex; 
+    gap: 20px;     
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory; 
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+    padding-bottom: 20px;
+}
+.novidades-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.novidades-card {
+    min-width: 25vw;
+    flex-shrink: 0;
+    scroll-snap-align: start; 
+    display: flex;
+    flex-direction: column;
+}
+
+.novidades-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+}
+
+.novidades-info {
+    text-align: left;
+}
+
+.novidades-info h3 {
+    font-size: 0.9rem;
+    font-weight: normal;
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.novidades-info p {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    color: #000;
+}
+@media (max-width: 768px) {
+    .novidades-section {
+        padding: 40px 20px;
+    }
+    
+    .novidades-card {
+        min-width: 80vw; 
+    }
+}
+
+/* --- SETAS DE NAVEGAÇÃO (Novidades e Seleção) --- */
+
+.carousel-wrapper {
+    position: relative; 
+}
+
+.scroll-arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #eee;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: auto !important; 
+}
+
+.carousel-wrapper:hover .scroll-arrow {
+    opacity: 1;
+}
+
+.scroll-arrow:hover {
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+}
+
+.scroll-arrow svg {
+    width: 20px;
+    height: 20px;
+}
+
+.prev-arrow {
+    left: 10px; 
+}
+
+.next-arrow {
+    right: 10px;
+}
+
+@media (max-width: 768px) {
+    .scroll-arrow {
+        display: none; 
+    }
+}
+
+.product-page-container {
+    padding-top: 120px; 
+}
+
+.container-cadastro {
+    padding-top: 120px;
+}
+
+.conta-bemvindo-faixa {
+    margin-top: 100px;
+}
+
+.main-content{
+    padding-top: 100px !important;
+}
+
+/* ----------------------------------------------------------
+ * ESTILO CATÁLOGO
+ * ---------------------------------------------------------- */
+
+.catalog-header {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.catalog-header h1 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.catalog-desc {
+    font-family: "Inter", sans-serif; 
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 60px 20px; 
+    width: 90%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.product-img {
+    background-color: #f9f9f9; 
+    aspect-ratio: 3 / 2; 
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 15px;
+}
+
+.product-info-row {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;
+}
+
+.info-left h3 {
+    font-family: "Inter", sans-serif;
+    font-size: 0.85rem;
+    font-weight: bold; 
+    margin: 0 0 5px 0;
+    text-transform: none; 
+}
+
+.info-left p {
+    font-size: 0.85rem;
+    color: #000;
+    margin: 0 0 10px 0;
+}
+
+.btn-wishlist-catalog {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #000;
+    transition: opacity 0.3s;
+}
+
+.btn-wishlist-catalog svg {
+    width: 20px;     
+    height: 20px;
+    fill: transparent; 
+    stroke: #000;     
+    transition: fill 0.3s ease;
+}
+
+.btn-wishlist-catalog:hover svg {
+    fill: #000; 
+}
+
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* ----------------------------------------------------------
+ * ESTILIZAÇÃO DA PÁGINA DE LOJAS
+ * ---------------------------------------------------------- */
+
+.container-lojas {
+    background-color: #ffffff;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 100px !important;
+    margin-top: 0 !important;
+}
+
+.container-lojas h1 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2rem;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 80px;
+    margin-top: 20px;
+}
+
+.lojas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 40px;
+}
+
+.loja-card {
+    display: block;
+    text-decoration: none;
+    color: #000;
+}
+
+.loja-img {
+    width: 100%;
+    height: 400px; 
+    background-color: #eee;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+    transition: transform 0.5s ease;
+}
+
+.loja-card:hover .loja-img {
+    filter: brightness(0.9); 
+}
+
+.loja-info {
+    text-align: center;
+}
+
+.loja-info h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    letter-spacing: 1px;
+}
+
+.loja-info p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0 0 5px 0;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .lojas-grid {
+        grid-template-columns: 1fr; 
+    }
+    .loja-img {
+        height: 300px;
+    }
+}
+
+/* ----------------------------------------------------------
+ * HERO DE COLEÇÃO INDIVIDUAL 
+ * ---------------------------------------------------------- */
+
+.collection-hero-single {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    background-size: cover;
+    background-position: center center; 
+    display: flex;
+    align-items: flex-end; 
+    margin-top: 0; 
+}
+
+.collection-hero-overlay {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    align-items: flex-start;   
+    padding: 60px 80px;        
+    box-sizing: border-box;
+}
+
+.collection-hero-text {
+    color: #ffffff;
+    max-width: 700px;
+    text-align: left;
+}
+
+.collection-hero-text h1 {
+    color: #ffffff;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 15px 0; 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+}
+
+.collection-hero-text p {
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size: 0.9rem;
+    line-height: 1.5;    
+    margin: 0;            
+    max-width: 450px;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+    .collection-hero-single { height: 60vh; }
+    .collection-hero-overlay { padding: 30px 20px; }
+}
+
+/* ----------------------------------------------------------
+ * HEADER SÓLIDO
+ * ---------------------------------------------------------- */
+
+.main-header.header-solid {
+    background-color: #f9f9f9; 
+    border-bottom: 1px solid #eee;
+}
+
+.main-header.header-solid .nav-left a,
+.main-header.header-solid .logo-container a,
+.main-header.header-solid .nav-right a {
+    color: #000 !important;
+}
+
+.main-header.header-solid .nav-right svg {
+    color: #000 !important;
+    stroke: #000 !important;
+}
+/* ----------------------------------------------------------
+ * HEADER COM CONTEÚDO BRANCO 
+ * ---------------------------------------------------------- */
+.main-header.header-white-content:not(.header-scrolled) .nav-left a,
+.main-header.header-white-content:not(.header-scrolled) .logo-container a,
+.main-header.header-white-content:not(.header-scrolled) .nav-right a {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
+}
+
+.main-header.header-white-content:not(.header-scrolled) .nav-right svg {
+    stroke: #ffffff !important;
+    color: #ffffff !important;
+    transition: stroke 0.3s ease;
 }
