@@ -18,12 +18,12 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roseglaze - Coleções</title>
+    <title>Coleções | ROSEGLAZE</title>
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body style="background-color: #f0f0f0;"> <?php require 'header.php'; ?>
 
-    <main class="container-produtos">
+    <main class="container-colecoes">
         
         <?php if (count($colecoes) > 0): ?>
             <?php foreach ($colecoes as $colecao): ?>
@@ -35,10 +35,9 @@ try {
                         <div class="colecao-banner-overlay">
                             <div class="colecao-banner-text">
                                 <h1><?php echo htmlspecialchars($colecao['nome']); ?></h1>
-                                <p><?php echo htmlspecialchars($colecao['descricao']); ?></p>
                                 
                                 <div class="colecao-banner-buttons">
-                                    <a href="colecao.php?id=<?php echo htmlspecialchars($colecao['id']); ?>" class="btn-banner-link">
+                                    <a href="catalogo.php?colecao_id=<?php echo htmlspecialchars($colecao['id']); ?>" class="btn-banner-link">
                                         Ver Coleção
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
                                             fill="none" stroke="currentColor" stroke-width="2" 
