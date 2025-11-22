@@ -1,15 +1,19 @@
 <?php
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $itens_na_sacola = 0;
 if (isset($_SESSION['sacola']) && is_array($_SESSION['sacola'])) {
     $itens_na_sacola = array_sum($_SESSION['sacola']);
-} else {
-    $_SESSION['sacola'] = [];
 }
 
+$pagina_atual = basename($_SERVER['PHP_SELF']);
+$classe_extra = ($pagina_atual === 'index.php') ? '' : 'header-solid';
 ?>
 
-<header class="main-header">
+<header class="main-header <?php echo $classe_extra; ?>">
         
     <nav class="nav-left">
         <a href="catalogo.php?tipo=Sol">Óculos de Sol</a>
