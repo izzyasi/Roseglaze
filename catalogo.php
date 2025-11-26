@@ -11,7 +11,7 @@ $descricao_pagina = "Descubra a nossa gama completa de óculos.";
 $imagem_banner = null; 
 
 if ($tipo_produto === 'Sol') {
-    $titulo_pagina = "TODOS OS ÓCULOS DE SOL";
+    $titulo_pagina = "ÓCULOS DE SOL";
     $descricao_pagina = "Explore nossa coleção de óculos de sol.";
 } elseif ($tipo_produto === 'Sem Grau') {
     $titulo_pagina = "ÓCULOS DE GRAU";
