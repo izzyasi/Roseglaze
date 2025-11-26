@@ -1,7 +1,4 @@
 <?php
-/*
- * Documentação: Adicionar Espaço (admin/adicionar_espaco.php)
- */
 
 require '../conexao.php';
 
@@ -14,33 +11,35 @@ $erros = [];
 $mensagem_sucesso = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome_local = trim($_POST['nome_local']);
-    $endereco_curto = trim($_POST['endereco_curto']);
-    $imagem_local = trim($_POST['imagem_local']); 
+    $nome = trim($_POST['nome']);
+    $endereco = trim($_POST['endereco']);
+    $horario = trim($_POST['horario']);
+    $imagem = trim($_POST['imagem']); 
 
-    if (empty($nome_local) || empty($imagem_local)) {
-        $erros[] = "Nome do Local e Caminho da Imagem são obrigatórios.";
+    if (empty($nome) || empty($imagem)) {
+        $erros[] = "Nome da Loja e Caminho da Imagem são obrigatórios.";
     }
 
     if (empty($erros)) {
         
-        $sql = "INSERT INTO espacos 
-                    (nome_local, endereco_curto, imagem_local, data_registro) 
+        $sql = "INSERT INTO lojas 
+                    (nome, endereco, horario, imagem) 
                 VALUES 
-                    (?, ?, ?, NOW())";
+                    (?, ?, ?, ?)";
         
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
-                $nome_local, 
-                $endereco_curto,
-                $imagem_local
+                $nome, 
+                $endereco,
+                $horario,
+                $imagem
             ]);
             
-            $mensagem_sucesso = "Espaço '".htmlspecialchars($nome_local)."' adicionado com sucesso!";
+            $mensagem_sucesso = "Loja '".htmlspecialchars($nome)."' adicionada com sucesso!";
             
         } catch (PDOException $e) {
-            $erros[] = "Erro ao adicionar espaço: " . $e->getMessage();
+            $erros[] = "Erro ao adicionar loja: " . $e->getMessage();
         }
     }
 }
@@ -51,10 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roseglaze Admin - Adicionar Espaço</title>
+    <title>Roseglaze Admin - Adicionar Loja</title>
     
     <link rel="stylesheet" href="../css/estilo.css">
-    <link rel="stylesheet" href="admin.css"> </head>
+    <link rel="stylesheet" href="admin.css"> 
+</head>
 <body style="background-color: #f0f0f0;">
 
     <header class="admin-header">
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main class="admin-dashboard container-produtos">
         
         <div class="admin-page-header">
-            <h2 class="secao-titulo">Adicionar Novo Espaço</h2>
+            <h2 class="secao-titulo">Adicionar Nova Loja</h2>
             <a href="gerir_espacos.php" style="text-decoration: none; color: #555;">
                 &larr; Voltar para a lista
             </a>
@@ -95,21 +95,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="adicionar_espaco.php" method="POST" class="form-cadastro" style="max-width: none; background-color: #fff; padding: 30px; border-radius: 8px;">
             
             <div class="form-grupo-minimalista">
-                <label for="nome_local">Nome do Local (ex: Roseglaze Rio de Janeiro)</label>
-                <input type="text" id="nome_local" name="nome_local" required>
+                <label for="nome">Nome da Loja (ex: Roseglaze Rio)</label>
+                <input type="text" id="nome" name="nome" required>
             </div>
             
             <div class="form-grupo-minimalista">
-                <label for="endereco_curto">Endereço Curto (ex: Ipanema, Rio de Janeiro)</label>
-                <input type="text" id="endereco_curto" name="endereco_curto">
-            </div>
-            
-            <div class="form-grupo-minimalista">
-                <label for="imagem_local">Caminho da Imagem (ex: imagens/espaco_rio.jpg)</label>
-                <input type="text" id="imagem_local" name="imagem_local" required>
+                <label for="endereco">Endereço Completo</label>
+                <input type="text" id="endereco" name="endereco">
             </div>
 
-            <button type="submit" class="btn-add-to-bag">Adicionar Espaço</button>
+            <div class="form-grupo-minimalista">
+                <label for="horario">Horário de Funcionamento (ex: Seg-Sex 10h às 20h)</label>
+                <input type="text" id="horario" name="horario">
+            </div>
+            
+            <div class="form-grupo-minimalista">
+                <label for="imagem">Caminho da Imagem (ex: imagens/loja_rio.jpg)</label>
+                <input type="text" id="imagem" name="imagem" required>
+            </div>
+
+            <button type="submit" class="btn-add-to-bag">Adicionar Loja</button>
             
         </form>
 

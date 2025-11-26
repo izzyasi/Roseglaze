@@ -1,7 +1,4 @@
 <?php
-/*
- * Documentação: Gerir Espaços (admin/gerir_espacos.php)
- */
 
 require '../conexao.php';
 
@@ -10,17 +7,17 @@ if (!isset($_SESSION['admin_id'])) {
     exit; 
 }
 
-$espacos = []; 
+$lojas = []; 
 
 try {
-    $sql = "SELECT * FROM espacos ORDER BY data_registro DESC";
+    $sql = "SELECT * FROM lojas ORDER BY id DESC";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     
-    $espacos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $lojas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
 } catch (PDOException $e) {
-    die("Erro ao buscar espaços: " . $e->getMessage());
+    die("Erro ao buscar lojas: " . $e->getMessage());
 }
 
 ?>
@@ -29,10 +26,11 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roseglaze Admin - Gerir Espaços</title>
+    <title>Roseglaze Admin - Gerir Lojas</title>
     
     <link rel="stylesheet" href="../css/estilo.css">
-    <link rel="stylesheet" href="admin.css"> </head>
+    <link rel="stylesheet" href="admin.css"> 
+</head>
 <body style="background-color: #f0f0f0;">
 
     <header class="admin-header">
@@ -48,9 +46,9 @@ try {
     <main class="admin-dashboard container-produtos">
         
         <div class="admin-page-header">
-            <h2 class="secao-titulo">Gerir "Espaços Roseglaze"</h2>
+            <h2 class="secao-titulo">Gerir Lojas</h2>
             <a href="adicionar_espaco.php" class="btn-add-to-bag" style="text-decoration: none;">
-                Adicionar Novo Espaço
+                Adicionar Nova Loja
             </a>
         </div>
         
@@ -58,28 +56,30 @@ try {
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nome do Local</th>
-                    <th>Endereço Curto</th>
+                    <th>Nome</th>
+                    <th>Endereço</th>
+                    <th>Horário</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if (count($espacos) > 0): ?>
-                    <?php foreach ($espacos as $espaco): ?>
+                <?php if (count($lojas) > 0): ?>
+                    <?php foreach ($lojas as $loja): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($espaco['id']); ?></td>
-                            <td><?php echo htmlspecialchars($espaco['nome_local']); ?></td>
-                            <td><?php echo htmlspecialchars($espaco['endereco_curto']); ?></td>
+                            <td><?php echo htmlspecialchars($loja['id']); ?></td>
+                            <td><?php echo htmlspecialchars($loja['nome']); ?></td>
+                            <td><?php echo htmlspecialchars($loja['endereco']); ?></td>
+                            <td><?php echo htmlspecialchars($loja['horario'] ?? '-'); ?></td>
                             
                             <td class="tabela-acoes">
-                                <a href="editar_espaco.php?id=<?php echo $espaco['id']; ?>">Editar</a>
-                                <a href="apagar_espaco.php?id=<?php echo $espaco['id']; ?>" class="link-apagar" style="color: #c00;">Apagar</a>
+                                <a href="editar_espaco.php?id=<?php echo $loja['id']; ?>">Editar</a>
+                                <a href="apagar_espaco.php?id=<?php echo $loja['id']; ?>" class="link-apagar" style="color: #c00;">Apagar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="4" style="text-align: center;">Nenhum espaço encontrado.</td>
+                        <td colspan="5" style="text-align: center;">Nenhuma loja encontrada.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
@@ -92,7 +92,7 @@ try {
         const linksApagar = document.querySelectorAll('.link-apagar');
         linksApagar.forEach(function(link) {
             link.addEventListener('click', function(e) {
-                const confirmacao = confirm("Tem a certeza que deseja apagar este espaço? Esta ação é permanente.");
+                const confirmacao = confirm("Tem a certeza que deseja apagar esta loja? Esta ação é permanente.");
                 if (confirmacao === false) {
                     e.preventDefault(); 
                 }

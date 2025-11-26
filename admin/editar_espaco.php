@@ -1,7 +1,4 @@
 <?php
-/*
- * Documentação: Editar Espaço (admin/editar_espaco.php)
- */
 
 require '../conexao.php';
 
@@ -12,63 +9,66 @@ if (!isset($_SESSION['admin_id'])) {
 
 $erros = [];
 $mensagem_sucesso = '';
-$espaco = null;
+$loja = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id_espaco = filter_var($_POST['id_espaco'], FILTER_VALIDATE_INT);
-    $nome_local = trim($_POST['nome_local']);
-    $endereco_curto = trim($_POST['endereco_curto']);
-    $imagem_local = trim($_POST['imagem_local']);
+    $id_loja = filter_var($_POST['id_espaco'], FILTER_VALIDATE_INT);
+    $nome = trim($_POST['nome']);
+    $endereco = trim($_POST['endereco']);
+    $horario = trim($_POST['horario']);
+    $imagem = trim($_POST['imagem']);
 
-    if (empty($nome_local) || empty($imagem_local)) {
-        $erros[] = "Nome do Local e Caminho da Imagem são obrigatórios.";
+    if (empty($nome) || empty($imagem)) {
+        $erros[] = "Nome e Imagem são obrigatórios.";
     }
 
     if (empty($erros)) {   
-        $sql = "UPDATE espacos SET 
-                    nome_local = ?, 
-                    endereco_curto = ?, 
-                    imagem_local = ?
+        $sql = "UPDATE lojas SET 
+                    nome = ?, 
+                    endereco = ?, 
+                    horario = ?,
+                    imagem = ?
                 WHERE 
                     id = ?"; 
         
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
-                $nome_local, 
-                $endereco_curto,
-                $imagem_local,
-                $id_espaco
+                $nome, 
+                $endereco,
+                $horario,
+                $imagem,
+                $id_loja
             ]);
             
-            $mensagem_sucesso = "Espaço '".htmlspecialchars($nome_local)."' atualizado com sucesso!";
+            $mensagem_sucesso = "Loja '".htmlspecialchars($nome)."' atualizada com sucesso!";
             
         } catch (PDOException $e) {
-            $erros[] = "Erro ao atualizar espaço: " . $e->getMessage();
+            $erros[] = "Erro ao atualizar loja: " . $e->getMessage();
         }
     }
 }
 
-if (!isset($id_espaco)) {
-    $id_espaco = filter_var($_GET['id'], FILTER_VALIDATE_INT);
+if (!isset($id_loja)) {
+    $id_loja = filter_var($_GET['id'], FILTER_VALIDATE_INT);
 }
 
-if (!$id_espaco) {
-    die("Erro: ID do espaço inválido ou não fornecido.");
+if (!$id_loja) {
+    die("Erro: ID da loja inválido ou não fornecido.");
 }
 
 try {
-    $sql_espaco = "SELECT * FROM espacos WHERE id = ?";
-    $stmt_espaco = $pdo->prepare($sql_espaco);
-    $stmt_espaco->execute([$id_espaco]);
-    $espaco = $stmt_espaco->fetch(PDO::FETCH_ASSOC);
+    $sql_loja = "SELECT * FROM lojas WHERE id = ?";
+    $stmt_loja = $pdo->prepare($sql_loja);
+    $stmt_loja->execute([$id_loja]);
+    $loja = $stmt_loja->fetch(PDO::FETCH_ASSOC);
     
-    if (!$espaco) {
-        die("Espaço não encontrado.");
+    if (!$loja) {
+        die("Loja não encontrada.");
     }
     
 } catch (PDOException $e) {
-    die("Erro ao buscar o espaço: " . $e->getMessage());
+    die("Erro ao buscar a loja: " . $e->getMessage());
 }
 
 ?>
@@ -77,7 +77,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roseglaze Admin - Editar <?php echo htmlspecialchars($espaco['nome_local']); ?></title>
+    <title>Roseglaze Admin - Editar <?php echo htmlspecialchars($loja['nome']); ?></title>
     
     <link rel="stylesheet" href="../css/estilo.css">
     <link rel="stylesheet" href="admin.css">
@@ -97,7 +97,7 @@ try {
     <main class="admin-dashboard container-produtos">
         
         <div class="admin-page-header">
-            <h2 class="secao-titulo">Editar Espaço</h2>
+            <h2 class="secao-titulo">Editar Loja</h2>
             <a href="gerir_espacos.php" style="text-decoration: none; color: #555;">
                 &larr; Voltar para a lista
             </a>
@@ -119,26 +119,31 @@ try {
             <?php endif; ?>
         </div>
 
-        <form action="editar_espaco.php?id=<?php echo $espaco['id']; ?>" method="POST" class="form-cadastro" style="max-width: none; background-color: #fff; padding: 30px; border-radius: 8px;">
+        <form action="editar_espaco.php?id=<?php echo $loja['id']; ?>" method="POST" class="form-cadastro" style="max-width: none; background-color: #fff; padding: 30px; border-radius: 8px;">
             
-            <input type="hidden" name="id_espaco" value="<?php echo $espaco['id']; ?>">
+            <input type="hidden" name="id_espaco" value="<?php echo $loja['id']; ?>">
             
             <div class="form-grupo-minimalista">
-                <label for="nome_local">Nome do Local</label>
-                <input type="text" id="nome_local" name="nome_local" value="<?php echo htmlspecialchars($espaco['nome_local']); ?>" required>
+                <label for="nome">Nome da Loja</label>
+                <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($loja['nome']); ?>" required>
             </div>
             
             <div class="form-grupo-minimalista">
-                <label for="endereco_curto">Endereço Curto</label>
-                <input type="text" id="endereco_curto" name="endereco_curto" value="<?php echo htmlspecialchars($espaco['endereco_curto']); ?>">
-            </div>
-            
-            <div class="form-grupo-minimalista">
-                <label for="imagem_local">Caminho da Imagem</label>
-                <input type="text" id="imagem_local" name="imagem_local" value="<?php echo htmlspecialchars($espaco['imagem_local']); ?>" required>
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco" name="endereco" value="<?php echo htmlspecialchars($loja['endereco']); ?>">
             </div>
 
-            <button type="submit" class="btn-add-to-bag">Atualizar Espaço</button>
+            <div class="form-grupo-minimalista">
+                <label for="horario">Horário</label>
+                <input type="text" id="horario" name="horario" value="<?php echo htmlspecialchars($loja['horario'] ?? ''); ?>">
+            </div>
+            
+            <div class="form-grupo-minimalista">
+                <label for="imagem">Caminho da Imagem</label>
+                <input type="text" id="imagem" name="imagem" value="<?php echo htmlspecialchars($loja['imagem']); ?>" required>
+            </div>
+
+            <button type="submit" class="btn-add-to-bag">Atualizar Loja</button>
             
         </form>
 
